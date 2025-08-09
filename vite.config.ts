@@ -47,7 +47,7 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 // Use process.cwd() for path resolution instead of import.meta
 export default defineConfig(async () => {
   return {
-    base: './', // ✅ THIS MAKES ASSET PATHS RELATIVE
+    base: '/TechVenturre/', // ✅ THIS MAKES ASSET PATHS RELATIVE
     plugins: [
       react(),
       runtimeErrorOverlay(),
