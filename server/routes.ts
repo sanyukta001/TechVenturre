@@ -38,9 +38,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Submit contact form
   app.post("/api/contact", async (req, res) => {
     try {
+      // console.log("📩 Received contact form data:", req.body);
       const validatedData = insertContactSchema.parse(req.body);
+      // console.log("✅ Validated data:", validatedData);
       const submission = await storage.createContactSubmission(validatedData);
-      
+      // console.log("📦 Submission returned from storage:", submission);
+
       // TODO: Send email notification using nodemailer with techventurre@gmail.com
       // This would require setting up email credentials in environment variables
       
@@ -55,7 +58,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           errors: error.errors 
         });
       } else {
-        res.status(500).json({ message: "Failed to submit contact form" });
+        console.error("❌ Failed to submit contact form:", error);
+      res.status(500).json({ message: "Failed to submit contact form" });
       }
     }
   });

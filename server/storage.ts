@@ -66,9 +66,22 @@ export class MongoStorage implements IStorage {
 
   async createContactSubmission(insertContact: InsertContact): Promise<ContactSubmissionType> {
     const { ContactSubmission } = getModels();
+    // console.log("🧾 ContactSubmission schema:", ContactSubmission.schema.obj);
+
+    // console.log("📥 Inserting contact into DB:", insertContact);
+
+  try {
     const submission = new ContactSubmission(insertContact);
     const savedSubmission = await submission.save();
+
+    // console.log("✅ Saved contact submission:", savedSubmission);
+
     return this.formatContactSubmission(savedSubmission.toObject());
+  } catch (err) {
+    console.error("❌ Error saving contact submission:", err);
+    throw err;
+  }
+
   }
 
   // Testimonials
