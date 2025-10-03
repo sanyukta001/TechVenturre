@@ -1,4 +1,4 @@
-import { connectDB } from "./db";
+// import { connectDB } from "./db";
 import { getModels } from "@shared/schema";
 
 const sampleProjects = [
@@ -108,7 +108,7 @@ const sampleTestimonials = [
 
 export async function seedDatabase() {
   try {
-    await connectDB();
+    // await connectDB();
     const { Project, Testimonial } = getModels();
     
     // Clear existing data

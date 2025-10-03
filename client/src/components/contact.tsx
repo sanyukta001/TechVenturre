@@ -34,8 +34,15 @@ export default function Contact() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: InsertContact) => {
-      const response = await apiRequest("POST", "/api/contact", data);
-      return response.json();
+      const response = await fetch("https://script.google.com/macros/s/AKfycbx6hVDJ--hQUeCN7HgjGpjkuZF-h5fToZ_-bpHIqQ2uMjOyiw_oUdGM-m8Z5sn2Z1M/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      return response;
     },
     onSuccess: () => {
       toast({
@@ -43,7 +50,6 @@ export default function Contact() {
         description: "We'll get back to you within 24 hours.",
       });
       form.reset();
-      queryClient.invalidateQueries({ queryKey: ["/api/admin/contacts"] });
     },
     onError: (error) => {
       toast({

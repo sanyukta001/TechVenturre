@@ -1,14 +1,121 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { ExternalLink, Github } from "lucide-react";
-import { type ProjectType } from "@shared/schema";
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("all");
 
-  const { data: projects = [], isLoading } = useQuery<ProjectType[]>({
-    queryKey: ["/api/projects"],
-  });
+  const projects = [
+    {
+      _id: "1",
+      title: "Quiz App",
+      description: "Designed a role-based quiz system with Admin and User roles. Admin can create quizzes and users can participate and see their scores.",
+      category: "web",
+      imageUrl: "https://picsum.photos/seed/project1/400/300",
+      technologies: ["React", "Node.js", "PostgreSQL"],
+      projectUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      _id: "2",
+      title: "Fleet Management System",
+      description: "Designed a Fleet Management System to manage vehicles, track odometer runs, and view transaction history. Deployed on GCP with PostgreSQL backend.",
+      category: "web",
+      imageUrl: "https://picsum.photos/seed/project2/400/300",
+      technologies: ["React", "Node.js", "PostgreSQL", "GCP"],
+      projectUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      _id: "3",
+      title: "Admin Panel",
+      description: "Admin panel for managing and approving requisitions submitted via the mobile app. Built with React and Node.js, deployed on AWS EC2 with MongoDB.",
+      category: "web",
+      imageUrl: "https://picsum.photos/seed/project3/400/300",
+      technologies: ["React", "Node.js", "MongoDB", "AWS EC2"],
+      projectUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      _id: "4",
+      title: "Travel Application",
+      description: "Built a mobile application for employees to request official vehicles. Reduced paperwork and streamlined the requisition process.",
+      category: "mobile",
+      imageUrl: "https://picsum.photos/seed/project4/400/300",
+      technologies: ["Flutter", "Dart", "Node.js"],
+      projectUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      _id: "5",
+      title: "Data Migration System",
+      description: "Made a Data Migration System that migrates data from MongoDB to BigQuery for advanced analytics and dashboard creation. Simplified data queries for non-technical users and improved reporting efficiency.",
+      category: "web",
+      imageUrl: "https://picsum.photos/seed/project5/400/300",
+      technologies: ["TypeScript", "Node.js", "GCP", "BigQuery"],
+      projectUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      _id: "6",
+      title: "Decentralized Voting DApp",
+      description: "A secure and transparent online voting system built on Ethereum using Solidity and React.js. Enables users to vote anonymously with blockchain-backed integrity, leveraging smart contracts, Web3.js, and a responsive UI.",
+      category: "web",
+      imageUrl: "https://picsum.photos/seed/project6/400/300",
+      technologies: ["Solidity", "React.js", "Node.js", "Web3.js", "Ethereum", "Hardhat", "Chai"],
+      projectUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      _id: "7",
+      title: "Web 3.0 Real Estate App",
+      description: "A decentralized real estate platform built with Solidity, React.js, and Node.js. Enables NFT-based property ownership, secure smart contracts on Ethereum, and real-time blockchain interaction via Web3.js with a responsive UI.",
+      category: "web",
+      imageUrl: "https://picsum.photos/seed/project7/400/300",
+      technologies: ["Solidity", "React.js", "Node.js", "Web3.js", "Hardhat", "Ethereum", "Chai"],
+      projectUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      _id: "8",
+      title: "Real Estate Marketplace",
+      description: "A modern real estate platform connecting buyers, sellers, and agents with advanced search filters, virtual tours, and integrated CRM.",
+      category: "web",
+      imageUrl: "https://picsum.photos/seed/project8/400/300",
+      technologies: ["Next.js", "Prisma", "MySQL", "Cloudinary", "Mapbox"],
+      projectUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      _id: "9",
+      title: "Social Media Dashboard",
+      description: "An analytics dashboard for social media managers to track performance across multiple platforms with automated reporting and insights.",
+      category: "web",
+      imageUrl: "https://picsum.photos/seed/project9/400/300",
+      technologies: ["React", "Chart.js", "Express.js", "Redis", "Social APIs"],
+      projectUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      _id: "10",
+      title: "Mobile Banking App",
+      description: "A secure mobile banking application with biometric authentication, real-time notifications, and comprehensive financial management tools.",
+      category: "mobile",
+      imageUrl: "https://picsum.photos/seed/project10/400/300",
+      technologies: ["React Native", "TypeScript", "Firebase", "Biometric API"],
+      projectUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      _id: "11",
+      title: "E-commerce Platform",
+      description: "A modern e-commerce platform built with React and Node.js featuring real-time inventory management, payment processing, and analytics dashboard.",
+      category: "ecommerce",
+      imageUrl: "https://picsum.photos/seed/project11/400/300",
+      technologies: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
+      projectUrl: "#",
+      githubUrl: "#",
+    }
+  ];
 
   const filters = [
     { id: "all", label: "All Projects" },
@@ -32,37 +139,6 @@ export default function Projects() {
     };
     return colors[category as keyof typeof colors] || "bg-gray-100 text-gray-700";
   };
-
-  if (isLoading) {
-    return (
-      <section id="projects" className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-6">Featured Projects</h2>
-            <p className="text-xl text-slate-600">
-              Showcasing our latest work and successful collaborations
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg animate-pulse">
-                <div className="w-full h-48 bg-slate-200"></div>
-                <div className="p-6">
-                  <div className="h-4 bg-slate-200 rounded mb-3"></div>
-                  <div className="h-6 bg-slate-200 rounded mb-3"></div>
-                  <div className="h-16 bg-slate-200 rounded mb-4"></div>
-                  <div className="flex gap-2">
-                    <div className="h-6 w-16 bg-slate-200 rounded"></div>
-                    <div className="h-6 w-16 bg-slate-200 rounded"></div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="projects" className="py-16 bg-white">
@@ -164,3 +240,4 @@ export default function Projects() {
     </section>
   );
 }
+

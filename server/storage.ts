@@ -7,7 +7,7 @@ import {
   type TestimonialType,
   type InsertTestimonial
 } from "@shared/schema";
-import { connectDB } from "./db";
+// import { connectDB } from "./db";
 
 export interface IStorage {
   // Projects
@@ -28,7 +28,7 @@ export interface IStorage {
 
 export class MongoStorage implements IStorage {
   constructor() {
-    connectDB();
+    // connectDB();
   }
 
   // Projects
